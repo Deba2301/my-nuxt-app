@@ -44,21 +44,9 @@ const normalizedPosts = computed<PostCardData[]>(() => visiblePosts.value.map(p 
     id: n.id,
     title: n.title,
     content: (n.content ?? '') as string,
-    tags: n.tags,
-    reactions: n.reactions,
+    // Remove tags and reactions from index page
   }
 }))
-
-function getLikes(p: any) {
-  if (typeof p.reactions === 'number') return p.reactions
-  if (p.reactions && typeof p.reactions === 'object') return p.reactions.likes ?? 0
-  return 0
-}
-
-function getDislikes(p: any) {
-  if (p.reactions && typeof p.reactions === 'object') return p.reactions.dislikes ?? 0
-  return 0
-}
 </script>
 
 <style scoped>
