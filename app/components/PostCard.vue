@@ -25,18 +25,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-interface ReactionObj {
-  likes?: number
-  dislikes?: number
-}
 interface PostCardData {
   id: number
   title: string
   content: string
-  tags?: string[]
-  reactions?: number | ReactionObj
 }
-
 
 const props = defineProps<{ post: PostCardData }>()
 
@@ -45,8 +38,6 @@ const excerpt = computed(() =>
     ? props.post.content.slice(0, 140) + '…'
     : props.post.content
 )
-
-
 </script>
 
 <style scoped>
@@ -55,10 +46,10 @@ const excerpt = computed(() =>
   color: #fff;
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  padding: 1.5rem 1.5rem 1rem 1.25rem;
+  padding: 1.5rem;
   border-left: 6px solid #e62b1e; /* TED red */
-  margin-bottom: 1.5rem;
-  min-height: 180px;
+  min-height: 200px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

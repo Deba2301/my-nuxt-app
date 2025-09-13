@@ -4,7 +4,6 @@
 /* Typography utility classes */
 .brand-font { font-family: 'Pacifico', cursive, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
 .latest-posts-heading { font-family: 'Oswald', 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-.latest-posts-section, .latest-posts-heading { font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
 
 /* Layout helpers */
 .app-bg {
@@ -38,8 +37,6 @@ body { background: none; }
 <script setup lang="ts">
 import TopNav from '~/components/TopNav.vue'
 </script>
-
-<!-- Scoped not used to allow global layout adjustments; convert to module/scoped later if needed -->
 
 
 

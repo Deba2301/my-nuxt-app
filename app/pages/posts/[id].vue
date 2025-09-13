@@ -10,7 +10,7 @@
       </NuxtLink>
 
       <!-- Loading state -->
-      <div v-if="pending" class="space-y-4 animate-pulse">
+      <div v-if="postsStore.loading" class="space-y-4 animate-pulse">
         <div class="h-10 bg-orange-200 rounded w-4/5"></div>
         <div class="h-4 bg-orange-200 rounded w-full"></div>
         <div class="h-4 bg-orange-200 rounded w-5/6"></div>
@@ -20,29 +20,29 @@
 
       <!-- Error state -->
       <div
-        v-else-if="error"
+        v-else-if="postsStore.error"
         class="text-red-800 font-semibold bg-red-100 p-4 rounded-lg border border-red-300"
       >
-        Failed to load post.
+        {{ postsStore.error }}
       </div>
 
       <!-- Post with animation -->
       <transition name="fade-slide">
         <article
-          v-if="p"
+          v-if="post"
           class="bg-transparent rounded-2xl shadow-lg p-8 hover:shadow-xl transition"
         >
           <header>
             <h1 class="text-4xl font-extrabold tracking-tight text-amber-900 mb-4">
-              {{ p.title }}
+              {{ post.title }}
             </h1>
 
             <!-- Tags -->
-            <div class="mb-6" v-if="p.tags?.length">
+            <div class="mb-6" v-if="post.tags?.length">
               <strong class="block mb-2 text-amber-700">Tags:</strong>
               <div class="flex flex-wrap gap-2">
                 <span
-                  v-for="t in p.tags"
+                  v-for="t in post.tags"
                   :key="t"
                   class="px-3 py-1 text-sm rounded-full bg-orange-200 text-orange-800 font-medium border border-orange-300"
                 >
@@ -54,20 +54,20 @@
 
           <!-- Body -->
           <div class="prose max-w-none text-amber-800 leading-relaxed text-lg">
-            <p class="whitespace-pre-line">{{ p.body }}</p>
+            <p class="whitespace-pre-line">{{ post.body }}</p>
           </div>
 
           <!-- Footer -->
           <footer class="mt-8 text-sm text-amber-600 flex items-center gap-6 border-t border-orange-200 pt-4">
-            <span v-if="typeof p.reactions === 'number'" class="inline-flex items-center gap-1">
-              👍 {{ getLikes(p) }}
+            <span v-if="typeof post.reactions === 'number'" class="inline-flex items-center gap-1">
+              👍 {{ getLikes(post) }}
             </span>
             <span
-              v-else-if="p.reactions && typeof p.reactions === 'object'"
+              v-else-if="post.reactions && typeof post.reactions === 'object'"
               class="inline-flex items-center gap-6"
             >
-              <span class="inline-flex items-center gap-1">👍 {{ getLikes(p) }}</span>
-              <span class="inline-flex items-center gap-1">👎 {{ getDislikes(p) }}</span>
+              <span class="inline-flex items-center gap-1">👍 {{ getLikes(post) }}</span>
+              <span class="inline-flex items-center gap-1">👎 {{ getDislikes(post) }}</span>
             </span>
           </footer>
         </article>
@@ -78,17 +78,15 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { computed } from 'vue'
-
-interface Post { id: number; title: string; body: string; tags?: string[]; reactions?: number | { likes?: number, dislikes?: number } }
+import { usePostsStore } from '~/stores/posts'
 
 const route = useRoute()
-const { data: post, pending, error } = await useFetch<Post>(
-  `https://dummyjson.com/posts/${route.params.id}`,
-  { key: `post-${route.params.id}` }
-)
+const postsStore = usePostsStore()
 
-const p = computed(() => post.value)
+// Fetch the specific post
+await postsStore.fetchPost(route.params.id as string)
+
+const post = computed(() => postsStore.selectedPost)
 
 function getLikes(post: any) {
   if (typeof post.reactions === 'number') return post.reactions
@@ -100,6 +98,11 @@ function getDislikes(post: any) {
   if (post.reactions && typeof post.reactions === 'object') return post.reactions.dislikes ?? 0
   return 0
 }
+
+// Clear selected post when component unmounts
+onUnmounted(() => {
+  postsStore.clearSelectedPost()
+})
 </script>
 
 <style scoped>
