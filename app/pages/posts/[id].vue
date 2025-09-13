@@ -1,6 +1,7 @@
 <template>
-  <div class="px-4 py-10 max-w-3xl mx-auto">
-      <!-- Back link -->
+  <div class="full-bg min-h-screen w-full px-4 py-10" style="background: url('/photo/illustrationjpg.jpg') center center / cover no-repeat fixed;">
+    <div class="post-detail-card">
+  <!-- Back link -->
       <NuxtLink
         to="/"
         class="inline-flex items-center text-sm text-blue-900 hover:underline mb-6 font-medium"
@@ -26,10 +27,11 @@
       </div>
 
       <!-- Post with animation -->
-      <article
-        v-if="p"
-        class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 hover:shadow-xl transition animate-fade-in"
-      >
+      <transition name="fade-slide">
+        <article
+          v-if="p"
+          class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 hover:shadow-xl transition"
+        >
           <header>
             <h1 class="text-4xl font-extrabold tracking-tight text-slate-800 mb-4">
               {{ p.title }}
@@ -69,7 +71,8 @@
             </span>
           </footer>
         </article>
-      
+      </transition>
+  </div>
   </div>
 </template>
 
@@ -103,4 +106,40 @@ function getDislikes(post: any) {
 .prose p {
   margin-bottom: 1em;
 }
+
+/* Fade + Slide Animation */
+.fade-slide-enter-active {
+  transition: all 0.5s ease;
+}
+.fade-slide-leave-active {
+  transition: all 0.3s ease;
+}
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+  /* Readable card for post detail */
+  .full-bg {
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .post-detail-card {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 88px; /* 64px navbar + 24px gap */
+    margin-bottom: 2rem;
+    background: rgba(255,255,255,0.85);
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+    padding: 2.5rem 2rem;
+  }
 </style>
