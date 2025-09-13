@@ -4,7 +4,7 @@
   <!-- Back link -->
       <NuxtLink
         to="/"
-        class="inline-flex items-center text-sm text-blue-900 hover:underline mb-6 font-medium"
+        class="inline-flex items-center text-sm text-gray-800 hover:text-black mb-6 font-bold bg-white px-4 py-2.5 rounded-lg border-2 border-gray-200 hover:bg-gray-50 transition-all shadow-xl"
       >
         ← Back
       </NuxtLink>
@@ -30,21 +30,21 @@
       <transition name="fade-slide">
         <article
           v-if="p"
-          class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 hover:shadow-xl transition"
+          class="bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-8 hover:shadow-xl transition"
         >
           <header>
-            <h1 class="text-4xl font-extrabold tracking-tight text-slate-800 mb-4">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white mb-4">
               {{ p.title }}
             </h1>
 
             <!-- Tags -->
             <div class="mb-6" v-if="p.tags?.length">
-              <strong class="block mb-2 text-slate-600">Tags:</strong>
+              <strong class="block mb-2 text-blue-200">Tags:</strong>
               <div class="flex flex-wrap gap-2">
                 <span
                   v-for="t in p.tags"
                   :key="t"
-                  class="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-700 font-medium"
+                  class="px-3 py-1 text-sm rounded-full bg-blue-200/20 text-blue-100 font-medium border border-blue-200/30"
                 >
                   #{{ t }}
                 </span>
@@ -53,12 +53,12 @@
           </header>
 
           <!-- Body -->
-          <div class="prose max-w-none text-slate-700 leading-relaxed text-lg">
+          <div class="prose max-w-none text-blue-50 leading-relaxed text-lg">
             <p class="whitespace-pre-line">{{ p.body }}</p>
           </div>
 
           <!-- Footer -->
-          <footer class="mt-8 text-sm text-slate-600 flex items-center gap-6 border-t pt-4">
+          <footer class="mt-8 text-sm text-blue-200 flex items-center gap-6 border-t border-white/20 pt-4">
             <span v-if="typeof p.reactions === 'number'" class="inline-flex items-center gap-1">
               👍 {{ getLikes(p) }}
             </span>
@@ -130,9 +130,10 @@ function getDislikes(post: any) {
     margin-right: auto;
     margin-top: 88px; /* 64px navbar + 24px gap */
     margin-bottom: 2rem;
-    background: rgba(255,255,255,0.85);
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
     border-radius: 1.25rem;
-    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
     padding: 2.5rem 2rem;
+    color: #fff;
   }
 </style>

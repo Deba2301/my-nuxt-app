@@ -54,7 +54,7 @@ const excerpt = computed(() =>
   background: #111;
   color: #fff;
   border-radius: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
   padding: 1.5rem 1.5rem 1rem 1.25rem;
   border-left: 6px solid #e62b1e; /* TED red */
   margin-bottom: 1.5rem;
@@ -83,28 +83,33 @@ const excerpt = computed(() =>
   display: inline-block;
   padding: 0.4rem 1.2rem;
   border: 2px solid #fff;
-  background: #111;
+  background: rgba(255,255,255,0.1);
   color: #fff;
   border-radius: 2rem;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 .ted-read-link:hover {
   background: #fff;
   color: #e62b1e;
   border-color: #e62b1e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255,255,255,0.3);
 }
 /* Keep only line-clamp fallback if Tailwind line-clamp plugin is not enabled */
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
