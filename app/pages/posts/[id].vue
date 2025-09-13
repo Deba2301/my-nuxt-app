@@ -1,6 +1,5 @@
 <template>
-  <div class="min-h-screen w-full bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 px-4 py-10">
-    <div class="max-w-3xl mx-auto">
+  <div class="px-4 py-10 max-w-3xl mx-auto">
       <!-- Back link -->
       <NuxtLink
         to="/"
@@ -27,11 +26,10 @@
       </div>
 
       <!-- Post with animation -->
-      <transition name="fade-slide">
-        <article
-          v-if="p"
-          class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 hover:shadow-xl transition"
-        >
+      <article
+        v-if="p"
+        class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 hover:shadow-xl transition animate-fade-in"
+      >
           <header>
             <h1 class="text-4xl font-extrabold tracking-tight text-slate-800 mb-4">
               {{ p.title }}
@@ -71,8 +69,7 @@
             </span>
           </footer>
         </article>
-      </transition>
-    </div>
+      
   </div>
 </template>
 
@@ -105,21 +102,5 @@ function getDislikes(post: any) {
 <style scoped>
 .prose p {
   margin-bottom: 1em;
-}
-
-/* Fade + Slide Animation */
-.fade-slide-enter-active {
-  transition: all 0.5s ease;
-}
-.fade-slide-leave-active {
-  transition: all 0.3s ease;
-}
-.fade-slide-enter-from {
-  opacity: 0;
-  transform: translateY(20px);
-}
-.fade-slide-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
 }
 </style>

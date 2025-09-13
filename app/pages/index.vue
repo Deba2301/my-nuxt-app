@@ -34,7 +34,7 @@
 <script setup lang="ts">
 
 import { computed } from 'vue'
-
+import BlogPosts from '@/components/BlogPosts.vue'
 // BlogPost not used here; PostCard will be used inside BlogPosts
 
 interface RawPost { id: number; title: string; body: string; reactions?: number | any; tags?: string[] }

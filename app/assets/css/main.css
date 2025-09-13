@@ -1,0 +1,22 @@
+/* main.css - minimal global rules kept alongside Tailwind utilities */
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* Font smoothing */
+html, body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Small page-level background fallback */
+body {
+	background-color: #f0f9ff; /* light blue fallback */
+}
+
