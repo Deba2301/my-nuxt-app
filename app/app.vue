@@ -9,13 +9,9 @@
 /* Layout helpers */
 .app-bg {
   min-height: 100vh;
-  background: url('/photo/wallpaperflare.com_wallpaper.jpg') center center / cover no-repeat fixed;
+  background: url('/photo/illustrationjpg.jpg') center center / cover no-repeat fixed;
 }
 .content-shell {
-  backdrop-filter: blur(4px);
-  background: rgba(255,255,255,0.55);
-  box-shadow: 0 4px 24px -6px rgba(0,0,0,0.25);
-  border-radius: 1rem;
   padding: 2.5rem clamp(1rem,3vw,2.5rem);
   margin-top: 5rem; /* push below nav */
   margin-bottom: 3rem;

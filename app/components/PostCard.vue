@@ -1,24 +1,22 @@
 <template>
-  <article
-    class="p-3 bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-lg transition"
-  >
+  <article class="ted-card">
     <!-- Title & Content -->
     <div>
-      <h2 class="text-lg font-medium mb-1 text-slate-800 line-clamp-2">
+      <h2 class="ted-title line-clamp-2">
         {{ post.title }}
       </h2>
-      <p class="text-xs text-slate-600 line-clamp-3">
+      <p class="ted-excerpt line-clamp-3">
         {{ excerpt }}
       </p>
     </div>
 
     <!-- Read Button -->
-    <div class="mt-3 text-left">
+    <div class="ted-read-btn">
       <NuxtLink
         :to="`/posts/${post.id}`"
-        class="inline-block text-xs font-semibold px-3 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+        class="ted-read-link"
       >
-        Read
+        Read more
       </NuxtLink>
     </div>
   </article>
@@ -52,6 +50,51 @@ const excerpt = computed(() =>
 </script>
 
 <style scoped>
+.ted-card {
+  background: #111;
+  color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  padding: 1.5rem 1.5rem 1rem 1.25rem;
+  border-left: 6px solid #e62b1e; /* TED red */
+  margin-bottom: 1.5rem;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.ted-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  line-height: 1.2;
+}
+.ted-excerpt {
+  font-size: 0.98rem;
+  color: #e5e5e5;
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+}
+.ted-read-btn {
+  text-align: left;
+}
+.ted-read-link {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border: 2px solid #fff;
+  background: #111;
+  color: #fff;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.ted-read-link:hover {
+  background: #fff;
+  color: #e62b1e;
+  border-color: #e62b1e;
+}
 /* Keep only line-clamp fallback if Tailwind line-clamp plugin is not enabled */
 .line-clamp-3 {
   display: -webkit-box;
