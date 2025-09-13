@@ -6,16 +6,30 @@
   <p class="text-xs text-slate-400 mt-2 italic">{{ note ?? 'His mother had always taught him' }}</p>
       <div class="mt-3 flex items-center justify-between text-xs text-slate-500">
         <span v-if="post.tags?.length" class="inline-flex gap-2">
-          <span v-for="t in post.tags.slice(0,3)" :key="t" class="inline-block bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-xs">{{ t }}</span>
+          <span v-for="t in post.tags.slice(0,3)" :key="t" class="inline-block bg-slate-100 text-blue-700 px-2 py-0.5 rounded text-xs">#{{ t }}</span>
         </span>
-        <span v-if="post.reactions !== undefined" class="ml-auto flex items-center gap-1 text-xs">👍 {{ post.reactions }}</span>
+        <span v-if="post.reactions !== undefined" class="ml-auto flex items-center gap-2 text-xs">
+          <span v-if="typeof post.reactions === 'number'">
+            👍 {{ post.reactions }}
+          </span>
+          <span v-else>
+            👍 {{ post.reactions.likes ?? 0 }}
+            <span class="ml-2">👎 {{ post.reactions.dislikes ?? 0 }}</span>
+          </span>
+        </span>
       </div>
     </article>
   </NuxtLink>
 </template>
 
 <script setup lang="ts">
-interface PostCardData { id: number; title: string; content: string; tags?: string[]; reactions?: number }
+interface PostCardData {
+  id: number;
+  title: string;
+  content: string;
+  tags?: string[];
+  reactions?: number | { likes?: number; dislikes?: number };
+}
 import { computed } from 'vue'
 const props = defineProps<{ post: PostCardData, note?: string }>()
 const { note } = props as { note?: string }
