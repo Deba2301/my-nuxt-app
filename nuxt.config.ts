@@ -7,8 +7,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
   css: [
-    '@/assets/tailwind.css',
-    '@/assets/main.css',
+    '@/assets/css/tailwind.css',
+    '@/assets/css/main.css',
   ],
   
 })

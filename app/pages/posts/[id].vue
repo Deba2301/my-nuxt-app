@@ -1,5 +1,5 @@
 <template>
-  <div class="full-bg min-h-screen w-full px-4 py-10" style="background: url('/photo/illustrationjpg.jpg') center center / cover no-repeat fixed;">
+  <div class="full-bg min-h-screen w-full px-4 py-10">
     <div class="post-detail-card">
   <!-- Back link -->
       <NuxtLink
@@ -123,14 +123,7 @@ function getDislikes(post: any) {
   transform: translateY(-10px);
 }
   /* Readable card for post detail */
-  .full-bg {
-    min-height: 100vh;
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  .full-bg { min-height: 100vh; box-sizing: border-box; }
   .post-detail-card {
     max-width: 900px;
     margin-left: auto;

@@ -17,6 +17,21 @@ html, body {
 
 /* Small page-level background fallback */
 body {
-	background-color: #f0f9ff; /* light blue fallback */
+	background-color: #0f172a; /* fallback */
+	background-image: url('/photo/wallpaperflare.com_wallpaper.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	position: relative;
+}
+
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background: linear-gradient(rgba(15,23,42,0.55), rgba(15,23,42,0.55));
+	pointer-events: none;
+	z-index: -1;
 }
 
